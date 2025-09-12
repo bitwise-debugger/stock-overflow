@@ -1,5 +1,7 @@
+import { Toaster } from "sonner";
 import "./globals.css";
 import { Poppins } from "next/font/google";
+import { SessionProvider } from "next-auth/react";
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "900"],
@@ -16,6 +18,7 @@ export default function RootLayout({ children }) {
       <body
         className={`flex flex-col justify-between h-screen ${poppins.className}`}
       >
+        <Toaster />
         {children}
       </body>
     </html>

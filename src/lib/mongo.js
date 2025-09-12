@@ -3,7 +3,9 @@ import mongoose from "mongoose";
 const MONGODB_URI = process.env.MONGODB_URI;
 
 if (!MONGODB_URI) {
-    throw new Error('No URL provided in ENV variables!');
+    console.log("NO URL Provided in ENV Variables");
+
+    // throw new Error('No URL provided in ENV variables!');
 }
 
 export async function connectMongoDB() {

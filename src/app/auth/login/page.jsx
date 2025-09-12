@@ -2,9 +2,17 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Image from "next/image";
-import Link from "next/link";
+import { LoaderCircle } from "lucide-react";
+import { auth, signIn } from "@/auth";
+import CredentialsLoginButton from "@/components/login/buttons/CredentialsLoginButton";
+import GoogleLoginButton from "@/components/login/buttons/GoogleLoginButton";
+import { redirect } from "next/navigation";
 
-export default function Login() {
+export default async function Login() {
+  const session = await auth();
+  if (session) {
+    redirect("/");
+  }
   return (
     <main className="grow flex items-center bg-[#f5f5f5] justify-center">
       <form className="h-fit w-[425px] shadow-lg rounded-xl flex flex-col border justify-start px-6 pb-6 bg-white">
@@ -25,6 +33,7 @@ export default function Login() {
             </Label>
             <Input
               type={"email"}
+              name="email"
               placeholder="Enter your email"
               className={"w-full"}
             />
@@ -34,12 +43,13 @@ export default function Login() {
               Password
             </Label>
             <Input
-              type={"email"}
+              type={"password"}
+              name="password"
               placeholder="Enter your password"
               className={"w-full"}
             />
           </div>
-          <Button>Login</Button>
+          <CredentialsLoginButton />
         </div>
         <div className="Separator flex items-center w-full gap-5 px-5">
           <div className="sep-left h-[1px] w-full bg-zinc-300"></div>
@@ -47,16 +57,7 @@ export default function Login() {
           <div className="sep-right h-[1px] w-full bg-zinc-300"></div>
         </div>
         <div className="socialButtons w-full flex flex-col px-2 mt-2">
-          <Button variant={"outline"}>
-            <span> Continue with Google</span>
-            <Image
-              src={"/google.png"}
-              width={28}
-              height={28}
-              className="rounded-full"
-              alt="Google_Logo"
-            />
-          </Button>
+          <GoogleLoginButton />
         </div>
         <span className="text-center w-full mt-5 text-xs italic font-medium text-zinc-500">
           The Accounts are managed by admin

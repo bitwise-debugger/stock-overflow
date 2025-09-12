@@ -27,11 +27,6 @@ const userSchema = new mongoose.Schema({
     image: {
         type: String,
     },
-    status: {
-        type: String,
-        enum: ['active', 'inactive'],
-        default: 'inactive',
-    },
     role: {
         type: String,
         enum: ['admin', 'manager', 'staff'],
@@ -40,6 +35,7 @@ const userSchema = new mongoose.Schema({
     provider: {
         type: String,
         default: 'local',
+        enum: ['local', 'google'],
     },
     providerId: {
         type: String,
@@ -49,5 +45,9 @@ const userSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
+let User = mongoose.models?.User;
+if (!User) {
+    User = mongoose.model('User', userSchema);
+}
 
-export const User = mongoose.models.User || mongoose.model('User', userSchema);
+export default User;
