@@ -1,4 +1,9 @@
 import "./globals.css";
+import { Poppins } from "next/font/google";
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "900"],
+});
 export const metadata = {
   title: {
     default: "Stock Overflow | Inventory Management System",
@@ -8,7 +13,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="flex flex-col justify-between h-screen">{children}</body>
+      <body
+        className={`flex flex-col justify-between h-screen ${poppins.className}`}
+      >
+        {children}
+      </body>
     </html>
   );
 }
