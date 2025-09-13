@@ -19,7 +19,7 @@ export default function GoogleLoginButton() {
   return (
     <Button
       formAction={formAction}
-      className="disabled:opacity-30"
+      className="disabled:opacity-30 cursor-pointer disabled:cursor-not-allowed"
       disabled={false}
       variant={"outline"}
     >
@@ -30,7 +30,6 @@ export default function GoogleLoginButton() {
         </>
       ) : (
         <>
-          <span> Continue with Google</span>
           <Image
             src={"/google.png"}
             width={28}
@@ -38,6 +37,7 @@ export default function GoogleLoginButton() {
             className="rounded-full"
             alt="Google_Logo"
           />
+          <span> Login with Google</span>
         </>
       )}
     </Button>

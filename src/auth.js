@@ -26,18 +26,18 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         },
         async authorize(credentials) {
             await connectMongoDB();
-            console.log("Authorizing....");
+            // console.log("Authorizing....");
             console.log(credentials);
             let foundUser = await User.findOne({ email: credentials.email });
-            console.log("Found User", foundUser);
+            // console.log("Found User", foundUser);
 
             if (!foundUser) return null;
 
             const isMatch = await bcrypt.compare(credentials.password, foundUser.password);
-            console.log("Login Email:", credentials.email);
-            console.log("Login Password:", credentials.password);
-            console.log("DB Password Hash:", foundUser.password);
-            console.log("Is Match", isMatch);
+            // console.log("Login Email:", credentials.email);
+            // console.log("Login Password:", credentials.password);
+            // console.log("DB Password Hash:", foundUser.password);
+            // console.log("Is Match", isMatch);
             if (!isMatch) return null;
 
             const { id, name, email, phone, role, image, provider } = foundUser;
@@ -69,6 +69,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             session.user.createdAt = token.createdAt;
             session.user.updatedAt = token.updatedAt;
             return session;
+        },
+        async signIn(signInParams) {
+            console.log(signInParams, 'SignInParams');
+            return true;
         }
     },
     // pages: {

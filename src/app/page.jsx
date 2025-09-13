@@ -12,7 +12,7 @@ export default async function Home() {
   // console.log(data);
 
   return (
-    <div className="main flex items-center justify-center">
+    <div className="main flex items-center h-full  w-full justify-center">
       <LogoutButton />
     </div>
   );

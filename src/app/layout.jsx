@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`flex flex-col justify-between h-screen ${poppins.className}`}
+        className={`flex flex-col justify-between h-screen w-screen ${poppins.className}`}
       >
         <Toaster />
         {children}
