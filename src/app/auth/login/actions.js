@@ -11,12 +11,11 @@ export async function logout() {
     } catch (error) {
         if (error.message === 'NEXT_REDIRECT') throw error;
         console.log(error)
-        return { success: false, message: error.message ||   'Something went wrong!' };
+        return { success: false, message: error.message || 'Something went wrong!' };
     }
 }
 
 export async function credentialsLogin(_, formData) {
-
     try {
         const credentials = Object.fromEntries(formData);
         await signIn("credentials", { redirectTo: '/', ...credentials });
