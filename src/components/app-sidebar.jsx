@@ -28,13 +28,16 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import { SessionProvider, useSession } from "next-auth/react";
+import Loading from "@/app/loading";
+import NavUserLoading from "./ui/nav-user-loading";
 
 // This is sample data.
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: "Guest",
+    email: "guest@store.com",
+    image: "/default.jpg",
   },
   navMain: [
     {
@@ -108,6 +111,8 @@ const data = {
 };
 
 export function AppSidebar({ ...props }) {
+  const { data: session, status } = useSession();
+  console.log(session, status);
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -118,7 +123,13 @@ export function AppSidebar({ ...props }) {
         {/* <NavProjects projects={data.projects} /> */}
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        {status == 'loading' ? (
+          <NavUserLoading  />
+        ) : status == "authenticated" ? (
+          <NavUser user={session.user} />
+        ) : (
+          <NavUser user={data.user} />
+        )}
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

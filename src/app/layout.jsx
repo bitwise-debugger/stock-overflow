@@ -14,13 +14,15 @@ export const metadata = {
 };
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`flex flex-col justify-between h-screen w-screen ${poppins.className}`}
-      >
-        <Toaster />
-        {children}
-      </body>
-    </html>
+    <SessionProvider>
+      <html lang="en">
+        <body
+          className={`flex flex-col justify-between h-screen w-screen ${poppins.className}`}
+        >
+          <Toaster />
+          {children}
+        </body>
+      </html>
+    </SessionProvider>
   );
 }
