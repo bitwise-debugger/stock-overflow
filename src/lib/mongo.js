@@ -16,6 +16,7 @@ export async function connectMongoDB() {
         } else {
             const connection = await mongoose.connect(MONGODB_URI);
             // console.log(mongoose.connections.length);
+
             return connection;
         }
     } catch (error) {
