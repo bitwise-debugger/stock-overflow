@@ -7,6 +7,7 @@ import {
   Bot,
   ClipboardList,
   Command,
+  FlaskConical,
   Frame,
   GalleryVerticalEnd,
   Map,
@@ -14,6 +15,7 @@ import {
   PieChart,
   Settings2,
   SquareTerminal,
+  TestTube,
   UsersRound,
 } from "lucide-react";
 
@@ -90,6 +92,21 @@ const data = {
         },
       ],
     },
+    {
+      title: "Testing",
+      url: "/tests",
+      icon: FlaskConical,
+      items: [
+        {
+          title: "Staff",
+          url: "/staff",
+        },
+        {
+          title: "Manager",
+          url: "/manager",
+        },
+      ],
+    },
   ],
   projects: [
     // {
@@ -112,7 +129,6 @@ const data = {
 
 export function AppSidebar({ ...props }) {
   const { data: session, status } = useSession();
-  console.log(session, status);
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -123,8 +139,8 @@ export function AppSidebar({ ...props }) {
         {/* <NavProjects projects={data.projects} /> */}
       </SidebarContent>
       <SidebarFooter>
-        {status == 'loading' ? (
-          <NavUserLoading  />
+        {status == "loading" ? (
+          <NavUserLoading />
         ) : status == "authenticated" ? (
           <NavUser user={session.user} />
         ) : (
