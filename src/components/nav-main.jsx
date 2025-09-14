@@ -18,11 +18,25 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
-export function NavMain({ items }) {
-  return (
+export function NavMain({ items, user, status = "unauthenticated" }) {
+  // const pathname = usePathname();
+  // useEffect(() => {}, []);
+  return status == "unauthenticated" ? (
+    <span>Please Login First</span>
+  ) : (
     <SidebarGroup>
-      <SidebarGroupLabel>Options</SidebarGroupLabel>
+      <SidebarGroupLabel>
+        {status == "loading" ? (
+          "Loading...."
+        ) : (
+          <Link href={`/${user.role}/dashboard`}>
+            {`${user.role[0].toUpperCase()}${user.role.slice(1)}`} Dashboard
+          </Link>
+        )}
+      </SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
           <Collapsible

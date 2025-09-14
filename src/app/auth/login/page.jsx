@@ -8,7 +8,7 @@ import { redirect } from "next/navigation";
 export default async function Login() {
   const session = await auth();
   if (session) {
-    redirect("/");
+    redirect(`/${session.user.role}/dashboard`);
   }
   return (
     <main className="grow flex flex-col items-center bg-[#f5f5f5] justify-center">

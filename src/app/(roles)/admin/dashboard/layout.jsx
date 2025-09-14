@@ -8,6 +8,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { NavActions } from "@/components/ui/nav-actions";
 import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
@@ -16,7 +17,9 @@ import {
 } from "@/components/ui/sidebar";
 import { Suspense } from "react";
 
-export default async function DashboardLayout({ children }) {
+export default async function DashboardLayout({ children, ...props }) {
+  console.log(props);
+
   // await new Promise((resolve) => {
   //   setTimeout(() => {
   //     resolve();
@@ -33,32 +36,23 @@ export default async function DashboardLayout({ children }) {
               orientation="vertical"
               className="mr-2 data-[orientation=vertical]:h-4"
             />
-            <Breadcrumb>
+            {/* <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
-                    Building Your Application
-                  </BreadcrumbLink>
+                  <BreadcrumbLink>Accounts</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+                  <BreadcrumbPage>Google</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
-            </Breadcrumb>
+            </Breadcrumb> */}
+          </div>
+          <div className="ml-auto px-3">
+            <NavActions />
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          {/* <Suspense fallback={<Loading />}> */}
-          {children}
-          {/* </Suspense> */}
-          {/* <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-          </div>
-          <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min" /> */}
-        </div>
+        <div className="flex flex-1 flex-col gap-4 px-4 py-10">{children}</div>
       </SidebarInset>
     </SidebarProvider>
   );

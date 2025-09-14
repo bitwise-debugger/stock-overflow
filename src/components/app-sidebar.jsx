@@ -46,7 +46,7 @@ const data = {
       title: "Accounts",
       url: "/accounts",
       icon: UsersRound,
-      isActive: true,
+      // isActive: true,
       items: [
         {
           title: "Google Login Requests",
@@ -135,7 +135,12 @@ export function AppSidebar({ ...props }) {
         <TeamSwitcher />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        {status !== "authenticated" ? (
+          <Loading />
+        ) : (
+          <NavMain items={data.navMain} user={session.user} status={status} />
+        )}
+
         {/* <NavProjects projects={data.projects} /> */}
       </SidebarContent>
       <SidebarFooter>

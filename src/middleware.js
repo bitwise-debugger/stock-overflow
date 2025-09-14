@@ -9,13 +9,14 @@ export async function middleware(request = new NextRequest) {
     if (!cookieToken)
         return NextResponse.redirect(new URL('/auth/login', request.nextUrl.origin));
 
-    if (pathname == '/auth/login') {
-        return NextResponse.redirect(new URL('/', request.nextUrl.origin));
-    }
-
     const token = await getToken({
         req: request, secret: process.env.NEXTAUTH_SECRET
     });
+    if (pathname == '/auth/login') {
+        return NextResponse.redirect(new URL(`/${token.role}/dashboard`, request.nextUrl.origin));
+    }
+
+
     if (pathname.startsWith('/admin') && token.role !== 'admin') {
         return handleForbiddenRequest(request.nextUrl.origin);
     }

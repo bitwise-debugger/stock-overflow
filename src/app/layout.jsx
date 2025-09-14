@@ -2,6 +2,7 @@ import { Toaster } from "sonner";
 import "./globals.css";
 import { Poppins } from "next/font/google";
 import { SessionProvider } from "next-auth/react";
+import { NavigationProvider } from "@/context/NavigationContext";
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "900"],
@@ -14,15 +15,17 @@ export const metadata = {
 };
 export default function RootLayout({ children }) {
   return (
-    <SessionProvider>
-      <html lang="en">
-        <body
-          className={`flex flex-col justify-between h-screen w-screen ${poppins.className}`}
-        >
-          <Toaster />
-          {children}
-        </body>
-      </html>
-    </SessionProvider>
+    <NavigationProvider>
+      <SessionProvider>
+        <html lang="en">
+          <body
+            className={`flex flex-col justify-between h-screen w-screen ${poppins.className}`}
+          >
+            <Toaster />
+            {children}
+          </body>
+        </html>
+      </SessionProvider>
+    </NavigationProvider>
   );
 }
