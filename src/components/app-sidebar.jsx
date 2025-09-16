@@ -105,6 +105,10 @@ const data = {
           title: "Manager",
           url: "/manager",
         },
+        {
+          title: "Go to Origin",
+          url: "/",
+        },
       ],
     },
   ],

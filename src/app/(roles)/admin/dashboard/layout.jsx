@@ -18,7 +18,6 @@ import {
 import { Suspense } from "react";
 
 export default async function DashboardLayout({ children, ...props }) {
-  console.log(props);
 
   // await new Promise((resolve) => {
   //   setTimeout(() => {

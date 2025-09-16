@@ -16,10 +16,7 @@ export default function CredentialsLoginButton() {
     if (state?.message) toast.error(state.message);
   }, [state]);
   return (
-    <Button
-       formAction={formAction}
-      disabled={isPending}
-    >
+    <Button formAction={formAction} disabled={isPending}>
       {isPending ? (
         <>
           <span>Loading</span>

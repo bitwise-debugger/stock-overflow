@@ -1,18 +1,22 @@
 import { Toaster } from "sonner";
 import "./globals.css";
-import { Poppins } from "next/font/google";
+// import { Poppins } from "next/font/google";
 import { SessionProvider } from "next-auth/react";
 import { NavigationProvider } from "@/context/NavigationContext";
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "900"],
-});
+// const poppins = Poppins({
+//   subsets: ["latin"],
+//   weight: ["100", "200", "300", "400", "500", "600", "700", "900"],
+// });
+const poppins = {
+  className: "",
+};
 export const metadata = {
   title: {
     default: "Stock Overflow | Inventory Management System",
     template: "%s | Stock Overflow",
   },
 };
+
 export default function RootLayout({ children }) {
   return (
     <NavigationProvider>

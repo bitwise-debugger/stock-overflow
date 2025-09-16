@@ -12,7 +12,7 @@ export async function middleware(request = new NextRequest) {
     const token = await getToken({
         req: request, secret: process.env.NEXTAUTH_SECRET
     });
-    if (pathname == '/auth/login') {
+    if (pathname == '/auth/login' || pathname == '/') {
         return NextResponse.redirect(new URL(`/${token.role}/dashboard`, request.nextUrl.origin));
     }
 
